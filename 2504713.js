@@ -19,10 +19,19 @@ function startScanner() {
         { facingMode: "environment" },
         {},
         function (text) {
-            const place = JSON.parse(text);
-            showMarkerAt(place.top, place.left);
-            toggleScanner();
-        }
+    const data = JSON.parse(text);
+
+    showMarkerAt(data.top, data.left);
+
+    // SHOW INVENTORY DATA
+    document.body.innerHTML += `
+        <p>Name: ${data.name}</p>
+        <p>In Store: ${data.in_store ? "Yes" : "No"}</p>
+        <p>Price: €${data.price}</p>
+    `;
+
+    toggleScanner();
+}
     ).catch(function (err) {
         console.error(err);
     });
