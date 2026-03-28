@@ -35,6 +35,20 @@ h1 {
     position: relative;
     display: none;
 }
+button {
+    background-color: var(--theme);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: black;
+    cursor: pointer;
+    transform: scale(1.05);
+}
 
 #camera {
     width: 100%;
