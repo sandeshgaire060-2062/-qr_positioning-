@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-    font-family: "Arial";
+    font-family: Arial, sans-serif;
     color: var(--theme);
 }
 
@@ -19,12 +19,12 @@ h1 {
 }
 
 #marker {
-    width: 3vw; /* 3% of the viewport width */
+    width: 3vw;
     height: 3vw;
     background-color: black;
     border-radius: 50%;
-    outline: 5px solid var(--theme); /* does not affect the size */
-    border: 5px solid white; /* affects the size */
+    outline: 5px solid var(--theme);
+    border: 5px solid white;
     position: absolute;
     top: 0;
     left: 0;
@@ -35,8 +35,10 @@ h1 {
     position: relative;
     display: none;
 }
+
+/* Button styling */
 button {
-    background-color: var(--theme);
+    background-color: var(--theme); /* uses CSS variable  */
     color: white;
     padding: 12px 20px;
     border: none;
@@ -44,6 +46,7 @@ button {
     transition: 0.3s;
 }
 
+/* Hover effect (assignment requirement) */
 button:hover {
     background-color: black;
     cursor: pointer;
@@ -54,3 +57,15 @@ button:hover {
     width: 100%;
 }
 
+/* Optional: inventory styling */
+#inventory {
+    width: 90%;
+    margin-top: 20px;
+}
+
+#inventory div {
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
