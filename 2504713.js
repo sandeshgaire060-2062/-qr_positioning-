@@ -1,8 +1,11 @@
 const reader = new Html5Qrcode("camera");
 let scannerOn = false;
 
+const inventory = document.getElementById("inventory");
+
 function toggleScanner() {
     scannerOn = !scannerOn;
+
     if (scannerOn) {
         startScanner();
         mapContainer.style.display = "none";
@@ -19,19 +22,33 @@ function startScanner() {
         { facingMode: "environment" },
         {},
         function (text) {
-    const data = JSON.parse(text);
+            const data = JSON.parse(text);
 
-    showMarkerAt(data.top, data.left);
+            // Show marker on map
+            showMarkerAt(data.top, data.left);
 
-    // SHOW INVENTORY DATA
-    document.body.innerHTML += `
-        <p>Name: ${data.name}</p>
-        <p>In Store: ${data.in_store ? "Yes" : "No"}</p>
-        <p>Price: €${data.price}</p>
-    `;
+            // Create item container
+            const itemDiv = document.createElement("div");
 
-    toggleScanner();
-}
+            // Create separate <p> tags (IMPORTANT for marks)
+            const name = document.createElement("p");
+            name.textContent = "Name: " + data.name;
+
+            const stock = document.createElement("p");
+            stock.textContent = "In Store: " + (data.in_store ? "Yes" : "No");
+
+            const price = document.createElement("p");
+            price.textContent = "Price: €" + data.price;
+
+            // Append all
+            itemDiv.appendChild(name);
+            itemDiv.appendChild(stock);
+            itemDiv.appendChild(price);
+
+            inventory.appendChild(itemDiv);
+
+            toggleScanner();
+        }
     ).catch(function (err) {
         console.error(err);
     });
